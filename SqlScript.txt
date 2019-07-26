@@ -1,0 +1,14 @@
+CREATE DATABASE [FSLA]
+GO
+create table tblUser(UserId int primary key identity(1,1), UserName nvarchar(50) not null, UserRole int not null, LoginStatus bit default 0)
+GO
+create table tblLeave(LeaveId int primary key identity(1,1),LeaveDate datetime not null, AvailableLeave int not null, LeaveStatus int not null, UserId int foreign key references tblUser(UserId))
+GO
+
+insert into tblUser values ( N'User',1,1)
+insert into tblUser values ( N'User2',1,1)
+insert into tblUser values ( N'Admin',2,1)
+
+insert into tblLeave values (DATEADD(dd,3,getdate()),5,0,1)
+insert into tblLeave values (DATEADD(dd,3,getdate()),5,0,2)
+
